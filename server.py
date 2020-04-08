@@ -24,7 +24,7 @@ class ServerProtocol(asyncio.Protocol):
         else:
             login = "login:"
             if decoded.startswith(login):
-                new_user = decoded.replace(login, "").replace("\r\n", "")
+                new_user = decoded.replace(login, "").replace("\r\n", "").strip()
                 self.add_user(new_user)
             else:
                 self.transport.write("Неправильный логин\n".encode())
